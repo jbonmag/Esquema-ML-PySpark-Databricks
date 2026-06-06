@@ -67,6 +67,3 @@ Para usar este esquema con una fuente real:
 4. Añade validación de calidad de datos antes del entrenamiento.
 5. Guarda el modelo con `model.write().overwrite().save(...)` si se necesita despliegue posterior.
 
-## Seguridad
-
-No se necesitan credenciales para ejecutar el ejemplo. Los artefactos generados, modelos y salidas locales quedan excluidos del repositorio mediante `.gitignore`.
