@@ -1,0 +1,21 @@
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Generated Spark outputs
+outputs/
+models/
+*.csv
+*.parquet
+metastore_db/
+spark-warehouse/
+derby.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
