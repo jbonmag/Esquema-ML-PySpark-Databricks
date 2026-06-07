@@ -1,69 +1,70 @@
-# Esquema ML PySpark Databricks
+# PySpark ML Pipeline for Databricks
 
-Plantilla de proyecto de machine learning con PySpark para clasificación binaria de churn. El repositorio muestra una estructura mínima pero completa: creación de datos, preprocesamiento, pipeline de MLlib, entrenamiento, evaluación y exportación opcional de predicciones.
+Reference machine learning project using PySpark for binary churn classification. The repository provides a small but complete workflow: sample data creation, preprocessing, MLlib pipeline construction, training, evaluation and optional prediction export.
 
-## Objetivo
+## Objective
 
-Predecir si un cliente abandonará un servicio a partir de variables demográficas y de comportamiento básicas:
+Predict whether a customer is likely to churn from basic demographic and behavioral variables:
 
-- Género
-- Edad
-- Ingresos
-- País
+- Gender
+- Age
+- Income
+- Country
 
-El dataset incluido en el ejemplo es sintético y sirve para documentar la estructura de trabajo. En un caso real, la misma arquitectura se puede adaptar a datos en Delta, Parquet, CSV o tablas gestionadas en Databricks.
+The included dataset is synthetic and is meant to document the workflow structure. In a real project, the same architecture can be adapted to Delta, Parquet, CSV or managed Databricks tables.
 
-## Estructura
+## Structure
 
 ```text
 .
-├── Esquema ML PySpark Databricks.ipynb
-├── src/
-│   └── churn_pipeline.py
-├── requirements.txt
-├── .gitignore
-└── README.md
+|-- Esquema ML PySpark Databricks.ipynb
+|-- src/
+|   `-- churn_pipeline.py
+|-- requirements.txt
+|-- .gitignore
+`-- README.md
 ```
 
 ## Pipeline
 
-1. Creación o carga del DataFrame.
-2. Inspección del esquema.
-3. Indexado de variables categóricas con `StringIndexer`.
-4. Ensamblado de variables con `VectorAssembler`.
-5. Separación train/test.
-6. Entrenamiento con `LogisticRegression`.
-7. Evaluación con AUC-ROC.
-8. Exportación opcional de predicciones.
+1. Create or load a Spark DataFrame.
+2. Inspect the schema.
+3. Encode categorical variables with `StringIndexer`.
+4. Assemble features with `VectorAssembler`.
+5. Split the data into train and test sets.
+6. Train a `LogisticRegression` model.
+7. Evaluate with AUC-ROC.
+8. Optionally export predictions.
 
-## Uso
+## Usage
 
-En local con Spark instalado:
+Local execution with Spark installed:
 
 ```bash
 pip install -r requirements.txt
 spark-submit src/churn_pipeline.py
 ```
 
-En Databricks:
+Databricks execution:
 
-1. Importa el notebook en el workspace.
-2. Ejecuta las celdas en orden.
-3. Sustituye el dataset sintético por una tabla o ruta real cuando sea necesario.
+1. Import the notebook into a Databricks workspace.
+2. Run the cells in order.
+3. Replace the synthetic dataset with a real table or file path when needed.
 
-Para guardar predicciones:
+To save predictions:
 
 ```bash
 spark-submit src/churn_pipeline.py --predictions-output outputs/churn_predictions
 ```
 
-## Adaptación a datos reales
+## Adapting to Real Data
 
-Para usar este esquema con una fuente real:
+1. Replace the sample data builder with a `spark.read` source.
+2. Adjust the target column.
+3. Review categorical and numerical feature columns.
+4. Add data quality checks before training.
+5. Save the trained model with `model.write().overwrite().save(...)` if deployment is required.
 
-1. Sustituye la función de creación de datos por `spark.read`.
-2. Ajusta la columna objetivo.
-3. Revisa las variables categóricas y numéricas.
-4. Añade validación de calidad de datos antes del entrenamiento.
-5. Guarda el modelo con `model.write().overwrite().save(...)` si se necesita despliegue posterior.
+## Security
 
+The example does not require credentials. Generated artifacts, models and local outputs are excluded from the repository with `.gitignore`.
