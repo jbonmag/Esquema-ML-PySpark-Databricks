@@ -68,4 +68,6 @@ churn_pipeline.ipynb       the experiment, executed
 requirements.txt
 ```
 
-The Telco Customer Churn data is © IBM, published under the Apache-2.0 license.
+## License
+
+The code is under the [MIT license](LICENSE). The Telco Customer Churn data is © IBM, published under the Apache-2.0 license, and is downloaded at run time rather than stored here.
